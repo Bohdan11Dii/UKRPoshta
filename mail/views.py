@@ -1,5 +1,6 @@
 from typing import Any, Dict
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -24,7 +25,7 @@ def hello_world(request):
     return render(request, "mail/index.html", context=context)
 
 #Route CRUD
-class RouteListView(generic.ListView):
+class RouteListView(LoginRequiredMixin, generic.ListView):
     model = Route
     paginate_by = 10
 
@@ -49,30 +50,30 @@ class RouteListView(generic.ListView):
         return queryset
     
 
-class RouteCreateView(generic.CreateView):
+class RouteCreateView(LoginRequiredMixin, generic.CreateView):
     model = Route
     form_class = RouteForm
     success_url = reverse_lazy("mail:route-list")
 
 
-class RouteUpdateView(generic.UpdateView):
+class RouteUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Route
     form_class = RouteForm
     success_url = reverse_lazy("mail:route-list")
 
 
-class RouteDeleteView(generic.DeleteView):
+class RouteDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Route
     success_url = reverse_lazy("mail:route-list")
 
 #Village CRUD
-class VillageCreateView(generic.CreateView):
+class VillageCreateView(LoginRequiredMixin, generic.CreateView):
     model = Village
     fields = "__all__"
     success_url = reverse_lazy("mail:village-list")
 
 
-class VillageListView(generic.ListView):
+class VillageListView(LoginRequiredMixin, generic.ListView):
     model = Village
     paginate_by = 10
 
@@ -99,24 +100,24 @@ class VillageListView(generic.ListView):
         return queryset
  
 
-class VillageCreateView(generic.CreateView):
+class VillageCreateView(LoginRequiredMixin, generic.CreateView):
     model = Village
     fields = "__all__"
     success_url = reverse_lazy("mail:village-list")
 
 
-class VillageUpdateView(generic.UpdateView):
+class VillageUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Village
     fields = "__all__"
     success_url = reverse_lazy("mail:village-list")
 
 
-class VillageDeleteView(generic.DeleteView):
+class VillageDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Village
     success_url = reverse_lazy("mail:village-list")
 
 #Directions CRUD
-class DirectionsListView(generic.ListView):
+class DirectionsListView(LoginRequiredMixin, generic.ListView):
     model = Directions
     paginate_by = 10
 
@@ -143,22 +144,22 @@ class DirectionsListView(generic.ListView):
         return queryset
 
 
-class DirectionDetailView(generic.DetailView):
+class DirectionDetailView(LoginRequiredMixin, generic.DetailView):
     model = Directions
 
 
-class DirectionCreateView(generic.CreateView):
-    model = Directions
-    form_class = DirectionForm
-    success_url = reverse_lazy("mail:direction-list")
-
-
-class DirectionUpdateView(generic.UpdateView):
+class DirectionCreateView(LoginRequiredMixin, generic.CreateView):
     model = Directions
     form_class = DirectionForm
     success_url = reverse_lazy("mail:direction-list")
 
 
-class DirectionDeleteView(generic.DeleteView):
+class DirectionUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Directions
+    form_class = DirectionForm
+    success_url = reverse_lazy("mail:direction-list")
+
+
+class DirectionDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Directions
     success_url = reverse_lazy("mail:direction-list")

@@ -2,3 +2,7 @@
     width: 100%;
     max-width: 1000px;
 }
+
+.hscroll {
+    overflow-x: auto; /* Horizontal */
+  }

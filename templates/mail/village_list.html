@@ -8,6 +8,7 @@
         {% include "includes/search_form.html" %}
       {% endblock %}
     {% if village_list %}
+    <div class="hscroll">
     <table class="table table-bordered table-dark" style="margin-right: 10px">
         <thead>
           <tr>
@@ -36,6 +37,7 @@
           {% endfor %}
         </tbody>
       </table>
+    </div>
     {% else %}
         <p>There are no Village in UKRMali</p>
     {% endif %}
