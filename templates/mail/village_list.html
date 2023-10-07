@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<h1 style="text-align: center;">Villages List</h1>
+    <br>
+    {% block search_form %}
+        {% include "includes/search_form.html" %}
+      {% endblock %}
+    {% if village_list %}
+    <table class="table table-bordered table-dark" style="margin-right: 10px">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Sub Index</th>
+            <th scope="col">View Directions</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for village in village_list %}
+                <tr>
+                  <td>{{ village.title }}</td>
+                    <td>{{ village.sub_index }}</td>
+                    
+                    {% for item in village.villages.all  %}
+                      <td>
+                        <a href="{% url 'mail:direction-detail' item.id %}" class="text-info"><strong>View Directions</strong></a>
+                      </td>
+                    {% endfor %}
+                      
+                    <td><a class="text-warning" href="{% url 'mail:village-update' pk=village.id %}">Update</a></td>
+                    <td><a class="text-danger" href="{% url 'mail:village-delete' pk=village.id %}">Delete</a></td>
+                  </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+        <p>There are no Village in UKRMali</p>
+    {% endif %}
+    <a class="btn btn-secondary" style="float: right;" href="{% url 'mail:village-create' %}">Create</a>
+        
+{% endblock %}
+

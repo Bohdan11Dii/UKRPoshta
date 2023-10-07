@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<h1 style="text-align: center;">Directions List</h1>
+    <br>
+    {% block search_form %}
+        {% include "includes/search_form.html" %}
+      {% endblock %}
+    {% if directions_list %}
+    <table class="table table-bordered table-dark" style="margin-right: 10px">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Main Index</th>
+            <th scope="col">Time</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+
+          </tr>
+        </thead>
+        <tbody>
+            {% for direction in directions_list %}
+                <tr>
+                  <td><a href="{% url 'mail:direction-detail' direction.id %}" class="text-info"><strong>{{ direction.title }}</strong></a></td>
+                    <td>{{ direction.main_index }}</td>
+                    <td>{{ direction.time }}</td>
+                    <td><a class="text-warning" href="{% url 'mail:direction-update' pk=direction.id %}">Update</a></td>
+                    <td><a class="text-danger" href="{% url 'mail:direction-delete' pk=direction.id %}">Delete</a></td>
+  
+                </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+        <p>There are no Direction in UKRMali</p>
+    {% endif %}
+    <a class="btn btn-secondary" style="float: right;" href="{% url 'mail:direction-create' %}">Create</a>
+
+        
+{% endblock %}
+

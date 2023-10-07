@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Home pge</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Welcome to the UKRMail</h1>
+    <h3>Content:</h3>
+    <ul>
+        <li>Маршрути: {{ route }}</li>
+        <li>Основні напрямки: {{ directions }}</li>
+        <li>Додаткові напрямки: {{ village }}</li>
+        
+    </ul>
+{% endblock %}
