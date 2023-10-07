@@ -31,7 +31,7 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 #
 
-ALLOWED_HOSTS = ["127.0.0.1",]
+ALLOWED_HOSTS = ["127.0.0.1", "ukrposhta.onrender.com"]
 
 INTERNAL_IPS = [
     # ...
@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    
+
     "debug_toolbar",
     "crispy_forms",
     "crispy_bootstrap4",
