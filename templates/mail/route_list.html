@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<h1 style="text-align: center;">Route List</h1>
+    <br>
+    {% block search_form %}
+        {% include "includes/search_form.html" %}
+      {% endblock %}
+    {% if route_list %}
+    <table class="table table-bordered table-dark" style="margin-right: 10px">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Start-Time</th>
+            <th scope="col">End-Time</th>
+            <th scope="col">Day of weak</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+
+          </tr>
+        </thead>
+        <tbody>
+            {% for route in route_list %}
+                <tr>
+                    <td>
+                      {{ route.title }}
+                    </td>
+                    <td>{{ route.start_time }}</td>
+                    <td>{{ route.end_time }}</td>
+                    <td>
+                    {% for day in route.day.all  %}
+                      {{ day.day }},
+                    {% endfor %}
+                  </td>
+                  <td><a class="text-warning" href="{% url 'mail:route-update' pk=route.id %}">Update</a></td>
+                  <td><a class="text-danger" href="{% url 'mail:route-delete' pk=route.id %}">Delete</a></td>
+                </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+        <p>There are no Route in UKRMali</p>
+    {% endif %}
+    <a class="btn btn-secondary" style="float: right;" href="{% url 'mail:route-create' %}">Create</a>
+
+{% endblock %}
+

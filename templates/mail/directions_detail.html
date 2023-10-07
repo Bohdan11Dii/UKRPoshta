@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<br>
+<a href="{% url 'mail:direction-list' %}">
+    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="text-dark" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
+    </svg>
+</a>
+<hr>
+<h1>Маршрут</h1>
+<br>
+<table class="table table-bordered table-dark" style="margin-right: 10px">
+    <thead>
+      <tr>
+        <th scope="col">Назва маршруту</th>
+        <th scope="col">Дні</th>
+        <th scope="col">Початок маршруту</th>
+        <th scope="col">Кінець маршруту</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ directions.route.title }}</td>
+            <td>
+            {% for day in directions.route.day.all  %}
+                {{ day.day }},
+            {% endfor %}
+        </td>
+            <td>{{ directions.route.start_time }}</td>
+            <td>{{ directions.route.end_time }}</td>
+        </tr>
+    </tbody>
+  </table>
+  <br>
+  <hr>
+  <br>
+  <h1>Напрямок</h1>
+    <br>
+    <table class="table table-bordered table-dark" style="margin-right: 10px">
+        <thead>
+        <tr>
+            <th scope="col">Назва напрямка</th>
+            <th scope="col">Головний індекс</th>
+            <th scope="col">Час</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ directions.title }}</td>
+                <td>{{ directions.main_index }}</td>
+                <td>{{ directions.time }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <hr>
+    <br>
+    <h1>Присілки</h1>
+    <br>
+    <table class="table table-bordered table-dark" style="margin-right: 10px">
+        <thead>
+        <tr>
+            <th scope="col">Назва присілка</th>
+            <th scope="col">Другорядний індекс</th>
+        </tr>
+        </thead>
+        <tbody>
+            
+            {% for village in directions.village.all  %}
+                <tr>
+                    <td>{{ village.title }}</td>
+                    <td>{{ village.sub_index }}</td>
+                </tr>
+                
+            {% endfor %}
+                
+        </tbody>
+    </table>
+    <br>
+    <hr>
+
+
+   
+{% endblock content %}
+    
