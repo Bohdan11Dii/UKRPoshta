@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+    <h1 class="title">Delete Village</h1>
+
+    <p style="font-size: 24px;">Are you sure you want to delete village: <strong class="text-success">{{ village }}</strong></p>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Yes, delete" class="btn btn-danger">
+    </form>
+    <br>
+    <a href="{% url 'mail:village-list' %}"><button class="btn btn-secondary">Cancel</button></a>
+{% endblock %}
